@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
+import db from "../lib/db";
 
 export const signup = async (req: Request, res: Response) => {
   try {
@@ -11,7 +12,6 @@ export const signup = async (req: Request, res: Response) => {
       data: {
         name: userDetails.name,
         email: userDetails.email,
-        username: userDetails.username,
         password: hashedPassword,
       },
     });
