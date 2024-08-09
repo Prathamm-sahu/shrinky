@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import db from "../lib/db";
 // Implement Zod
+
+
 export const redirect = async (req: Request, res: Response) => {
   try {
     const hashedUrl = req.body.params
@@ -17,12 +19,9 @@ export const redirect = async (req: Request, res: Response) => {
     }
 
     // Increase the vists count of the url
-    await db.shortUrl.update({
-      where: {
-        shortUrl: hashedUrl,
-      },
+    await db.visits.create({
       data: {
-        visits: shortUrlExists.visits.push(new Date())
+        shortUrlId: shortUrlExists.id
       }
     })
 
