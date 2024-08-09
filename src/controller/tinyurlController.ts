@@ -65,7 +65,11 @@ export async function getAllUrls(req: Request, res: Response) {
         id: userId
       },
       include: {
-        shortUrls: true
+        shortUrls: {
+          include: {
+            visits: true
+          }
+        }
       }
     })
 
